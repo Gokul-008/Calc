@@ -30,128 +30,129 @@ Publish the website in the given URL.
 
 ```python
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Calculator</title>
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <h1 align="center">
-      Calculator
-
-    </h1>
-
-
-<div class="container">
-  <div class="calculator">
-
-   
-</h1>
-    <form>
-      <div class="display">
-        <input type="text" name="display">
-      </div>
-      <div>
-        <input type="button" value="AC" onclick="display.value = '' " class="operator">
-        <input type="button" value="DE" onclick="display.value =  display.value.toString().slice(0,-1)" class="operator">
-        <input type="button" value="." onclick="display.value += '.' " class="operator">
-        <input type="button" value="/" onclick="display.value += '/' " class="operator">
-      </div>
-      <div>
-        <input type="button" value="7" onclick="display.value += '7' ">
-        <input type="button" value="8" onclick="display.value += '8' ">
-        <input type="button" value="9" onclick="display.value += '9' ">
-        <input type="button" value="*" onclick="display.value += '*' " class="operator">
-      </div>
-      <div>
-        <input type="button" value="4" onclick="display.value += '4' ">
-        <input type="button" value="5" onclick="display.value += '5' ">
-        <input type="button" value="6" onclick="display.value += '6' ">
-        <input type="button" value="-" onclick="display.value += '-' " class="operator">
-      </div>
-      <div>
-        <input type="button" value="1" onclick="display.value += '1' ">
-        <input type="button" value="2" onclick="display.value += '2' ">
-        <input type="button" value="3" onclick="display.value += '3' ">
-        <input type="button" value="+" onclick="display.value += '+' " class="operator">
-      </div>
-      <div>
-        <input type="button" value="00" onclick="display.value += '00' ">
-        <input type="button" value="0" onclick="display.value += '0' ">
-        <input type="button" value="=" onclick="display.value = eval(display.value)" class="equal operator">
-       
-      </div>
-    </form>
+ 
+<div class="calculator">
+  
+    <h1>GOKUL M</h1>
+    <h2>REG NO:212222230037</h2>
+  <input type="text" id="display" disabled>
+  <div class="buttons">
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('%')">%</button>
+    <button onclick="appendToDisplay('^')">^</button>
+    <button onclick="appendToDisplay('log')">log</button>
+    <button onclick="appendToDisplay('1/x')">1/x</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToDisplay('/')">/</button>
   </div>
 </div>
-
-
+<script src="script.js"></script>
 </body>
 </html>
+
 
 ```
 ### style.css
 ```python
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-}
-
-
-.container{
-    width: 100%;
-    height: 100vh;
-    background:lightcyan;
+body {
+    font-family: Arial, sans-serif;
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-.calculator{
-    background: darkolivegreen;
+    align-items: center;
+    height: 100vh;
+    background-color:gray
+    ;
+  }
+  h1{
+      align-items: center;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: rgb(69, 67, 69);
+  }
+  
+  .calculator {
+    background-color:cyan;
     padding: 20px;
-    border-radius: 20px;
-}
-.calculator form input{
-    border: 0;
-    outline: 0;
-    width: 60px;
-    height: 60px;
     border-radius: 10px;
-    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
-    background: transparent;
-    font-size: 20px;
-    color: blanchedalmond;
-    cursor: pointer;
-    margin: 10px;
-}
-
-form .display{
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
-}
-form .display input{
+    box-shadow: 0 0 10px rgba(52, 127, 162, 0.1);
+  }
+  h2{
+      align-items: center;
+  }
+  
+  #display {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
     text-align: right;
-    flex: 1;
-    font-size: 45px;
-    box-shadow: none;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  button {
+    padding: 15px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #464545;
+  }
+```
+### script.js
+```python
+let display = document.getElementById('display');
+
+function appendToDisplay(value) {
+  display.value += value;
 }
-form input.equal{
-    width: 145px;
+
+function clearDisplay() {
+  display.value = '';
+}
+
+function calculate() {
+  try {
+    display.value = eval(display.value);
+  } catch (error) {
+    display.value = 'Error';
+  }
 }
 
 
 
-form input.operator{
-    color: #33ffd8;
-}
 ```
 
 ## OUTPUT:
-![alt text](<Screenshot (137).png>)
-![alt text](<Screenshot (138).png>)
+![alt text](<Screenshot (143).png>)
+![alt text](<Screenshot (144).png>)
 ## RESULT:
 The program for designing a standard calculator using HTML and CSS is executed successfully.
